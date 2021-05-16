@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Изменить объявление{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+<h1>Изменить объявление</h1>
+
+<br><br>
+<div class="form-group">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-secondary">Изменить</button>
+    </form>
+</div>
+
+{% else %}
+
+<h1>Данная функция доступна только зарегестрированным пользователям.</h1>
+
+{% endif %}
+
+{% endblock %}
