@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% block content %}
+<style>
+
+    body {
+        font-family: "Roboto", sans-serif;
+        font-size: 17px;
+        background-color: #fdfdfd;
+    }
+
+    .head_text {
+        color: white;
+    }
+
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+    }
+</style>
+
+<header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class=" col-md-8 col-md-10 mx-auto">
+                <div class="site-heading">
+                    <h3 class=" site-heading my-4 mt-3 text-white"> Добро пожаловать на Farmers Market! </h3>
+                    <p class="text-light">Вы можете оставить объявления уже сегодня. &nbsp
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</header>
+
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-sm-6">-->
+<!--            {% for post in post_list %}-->
+<!--            <div class="card">-->
+<!--                <div class="card-body">-->
+<!--                    <h2 class="card-title">{{ post.title }}</h2>-->
+<!--                    <p class="card-text text-muted h6">{{ post.author }} {{ post.post_date }} </p>-->
+
+<!--                    <p class="card-text">{{ post.body|slice:":100" }}</p>-->
+<!--                    <a href="{% url 'article_detail' post.pk %}" class="btn btn-primary">Подробнее </a>-->
+<!--                </div>-->
+
+<!--            </div>-->
+<!--            {% endfor %}-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<div class="row  row-cols-10 row-cols-md-3 mx-5">
+          {% for post in post_list %}
+          <div class="col my-4 mx-0">
+            <!-- Card Wider -->
+            <div class="card h-100 card-cascade wider">
+
+              <!-- Card image -->
+              <div class="view view-cascade overlay">
+                <img class="card-img-top" src="https://picsum.photos/200/100" alt="Card image cap">
+                <a>
+                  <div class="mask rgba-white-slight"></div>
+                </a>
+              </div>
+
+              <!-- Card content -->
+              <div class="card-body card-body-cascade text-center">
+
+                <!-- Title -->
+                <h4 class="card-title"><strong>{{ post.title }}</strong></h4>
+                <!-- Subtitle -->
+                <h5 class="blue-text pb-2"><strong>{{ post.category }}</strong></h5>
+                <!-- Text -->
+                <p class="card-text">{{ post.body|truncatechars:100 }}</p>
+<!--                <p class="card-text">{{ item.price }}</p>-->
+
+                <!-- Button -->
+
+<!--                <a class="btn btn-secondary btn-md btn-rounded mt-5 teal accent-2">Купить</a>-->
+                <a class="btn btn-secondary btn-md btn-rounded mt-5" href="{% url 'article_detail' post.pk %}">Подробнее &rarr;</a>
+
+              </div>
+
+            </div>
+            <!-- Card Wider -->
+          </div>
+          {% endfor %}
+
+
+        </div>
+
+<!--<div class="container-fluid">-->
+<!--    <div class="row row-cols-3 g-4">-->
+<!--        {% for post in post_list %}-->
+<!--        <div class="col rounded border border-light mt-3 ml-3 shadow">-->
+<!--            <div class="card h-100">-->
+<!--                <img src="https://picsum.photos/300/200" class="card-img-top"-->
+<!--                     style="max-width: 300px;max-height: 300px;width: auto;height: auto;margin: auto;">-->
+<!--                <p class="card-text">{{post.title}}</p>-->
+<!--                <p class="card-text">{{ post.body|safe|slice:":200" }}</p>-->
+<!--                <a href="#">Подробнее</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        {% if forloop.counter|divisibleby:3 %}-->
+<!--    </div>-->
+<!--    <div class="row">-->
+<!--        {% endif %}-->
+<!--        {% endfor %}-->
+<!--    </div>-->
+</div>
+
+{%endblock%}

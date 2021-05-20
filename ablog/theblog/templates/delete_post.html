@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Удалить объявление{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<h1>Удаление объявления</h1>
+<br><br>
+<h3>Удалить объявление «{{post.title}}»?</h3>
+
+<br>
+<div class="form-group">
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger">Удалить</button>
+    </form>
+</div>
+
+{% else %}
+
+<h1>Данная функция доступна только зарегестрированным пользователям.</h1>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} {{ post.title }}  {% endblock %}
+{% block content %}
+
+<h1>{{ post.title }}</h1>
+<small>
+    By: {{ post.author.first_name }} {{ post.author.last_name }}
+    {{post.post_date}}
+    {{ post.category }}
+
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'update_post' post.pk %}">(Изменить)</a>
+    <a href="{% url 'delete_post' post.pk %}">(Удалить)</a>
+
+    {% endif %}
+</small> <br>
+<hr>
+<br>
+{{ post.body|safe }}
+
+<br><br>
+<a href="{% url 'home' %}" class="btn btn-secondary">Назад</a>
+
+<br><br>
+<hr>
+<br>
+<form action="{% url 'like_post' post.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit" name="post_id" value="{{post.id}}"
+    class="btn btn-primary">
+        Мне нравится &#9829;  {{total_likes}}
+    </button>
+</form>
+
+{% endblock %}
